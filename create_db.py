@@ -16,9 +16,9 @@ logging.basicConfig(
 )
 
 NAMESPACE = "model-series"
-QUERY_TEXT = "what is the inspection time interval ?"
-FILE = "/media/llt/LENOVO5/data/IR/c2b0c2b0c2b0-cessna_182s_1997on_mm_182smm.pdf"
-INDEX_NAME = "demo-ir"
+TEST_QUERY = "what is the inspection time interval ?"
+FILE = os.environ["INPUT_FILE_ADDR"]
+INDEX_NAME = os.environ["PINECONE_INDEX_NAME"]
 
 # initialize pinecone
 pinecone.init(
@@ -51,8 +51,8 @@ qa = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=os.environ["OPENAI_AP
                                  return_source_documents=True)
 
 # test retriever
-result_ = qa(QUERY_TEXT)
-best_scores = db.similarity_search_with_score(QUERY_TEXT,
+result_ = qa(TEST_QUERY)
+best_scores = db.similarity_search_with_score(TEST_QUERY,
                                               k=2,
                                               namespace=NAMESPACE)
 
