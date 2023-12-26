@@ -17,7 +17,7 @@ INDEX_NAME = os.environ["PINECONE_INDEX_NAME"]
 st.set_page_config(page_title="Ask A Doc")
 st.title("Ask A Doc")
 
-st.write("MODEL 182/T182 SERIES 1997 AND ON")
+st.write("CODE DU TRAVAIL")
 
 st.cache_data()
 def download_file():
